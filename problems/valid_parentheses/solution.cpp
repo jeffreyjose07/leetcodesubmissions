@@ -1,21 +1,16 @@
 class Solution {
 public:
     bool isValid(string s) {
-        stack<char> st;
-        unordered_map<char,char>hmap;
-        hmap['(']=')';
-        hmap['{']='}';
-        hmap['[']=']';
-    
-        for(int i=0;i<s.length();i++){
-            if(s[i]=='(' || s[i]=='{' || s[i]=='['){
-                st.push(hmap[s.at(i)]);
-            }
-            else{
-                if(st.empty()){
-                    return false;
-                }
-                if(st.top()==s.at(i)){
+        unordered_map<char,char>charMap;
+        charMap['[']=']';
+        charMap['{']='}';
+        charMap['(']=')';
+        stack<char>st;
+        for(auto it: s){
+            if(it=='('||it=='{'||it=='['){
+                st.push(charMap[it]);
+            }else{
+                if(!st.empty() && st.top()==it){
                     st.pop();
                 }
                 else{
@@ -23,9 +18,8 @@ public:
                 }
             }
         }
-        if(!st.empty()){
+        if(!st.empty())
             return false;
-        }
         return true;
     }
 };
