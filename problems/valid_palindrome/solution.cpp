@@ -1,23 +1,25 @@
+using namespace std;
 class Solution {
 public:
+    string removeSpecialCharacters(string s){
+        string result;
+        for(char c : s){
+            if(isalnum(c)){
+                result += tolower(c);
+            }
+        }
+        return result;
+    }
     bool isPalindrome(string s) {
-        int l = 0, r = s.size()-1;
-        transform(s.begin(),s.end(),s.begin(),::tolower);
-        
+        string result = removeSpecialCharacters(s);
+        int l = 0, r = result.length()-1;
         while(l<=r){
-            while(l<=r && !isalnum(s.at(l))){
-                l++;
-            }
-            while(l<=r && !isalnum(s.at(r))){
-                r--;
-            }
-            if((l<=r) && (s.at(l)!=s.at(r))){
+            if(result[l]!=result[r]){
                 return false;
             }
             l++;
             r--;
         }
         return true;
-        
     }
 };
