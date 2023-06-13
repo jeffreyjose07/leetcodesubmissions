@@ -1,13 +1,15 @@
 class Solution {
 public:
     void moveZeroes(vector<int>& nums) {
-        int pointer = 0;
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]!=0)
-                nums[pointer++]=nums[i];
+        int p = 0, np = 0;
+        while(np<nums.size()){
+            if(nums[np]!=0){
+                nums[p++]=nums[np];
+            }
+            np++;
         }
-        for(int i = pointer; i<nums.size(); i++){
-            nums[pointer++]=0;
+        while(p<nums.size()){
+            nums[p++]=0;
         }
     }
 };
