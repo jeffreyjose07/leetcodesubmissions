@@ -8,12 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read/write
-      pull-requests: read/write
-      issues: read/write
-      id-token: read
-      repository-projects: read/write
+    permissions: write-all
 
     steps:
       - name: Sync
